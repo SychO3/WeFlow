@@ -5376,14 +5376,14 @@ function ExportPage() {
             </div>
           )}
           <div className="row-action-cell">
-            <div className="row-action-main">
+            <div className={`row-action-main ${hasRecentExport ? '' : 'single-line'}`.trim()}>
               <button
                 className={`row-detail-btn ${showSessionDetailPanel && sessionDetail?.wxid === contact.username ? 'active' : ''}`}
                 onClick={() => openSessionDetail(contact.username)}
               >
                 详情
               </button>
-              <div className="row-export-action-stack">
+              <div className={`row-export-action-stack ${hasRecentExport ? '' : 'single-line'}`.trim()}>
                 <button
                   type="button"
                   className={`row-export-link ${isRunning ? 'state-running' : ''} ${!canExport ? 'state-disabled' : ''}`}

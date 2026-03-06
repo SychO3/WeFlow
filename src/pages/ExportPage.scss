@@ -1806,6 +1806,10 @@
     display: inline-flex;
     align-items: flex-start;
     gap: 6px;
+
+    &.single-line {
+      align-items: center;
+    }
   }
 
   .row-detail-btn {
@@ -1837,6 +1841,11 @@
     align-items: center;
     gap: 2px;
     min-width: 84px;
+
+    &.single-line {
+      min-height: 28px;
+      justify-content: center;
+    }
   }
 
   .row-export-link {
