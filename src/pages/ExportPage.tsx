@@ -3887,11 +3887,9 @@ function ExportPage() {
 
     if (scope === 'content' && contentType) {
       if (contentType === 'text') {
-        const fastTextFormat: TextExportFormat = options.format === 'excel' ? 'arkme-json' : options.format
         const textExportConcurrency = Math.min(2, Math.max(1, base.exportConcurrency ?? options.exportConcurrency))
         return {
           ...base,
-          format: fastTextFormat,
           contentType,
           exportConcurrency: textExportConcurrency,
           exportAvatars: base.exportAvatars,
