@@ -3323,7 +3323,7 @@ function ChatPage(props: ChatPageProps) {
 
   const handleGroupAnalytics = useCallback(() => {
     if (!currentSessionId || !isGroupChatSession(currentSessionId)) return
-    navigate('/group-analytics', {
+    navigate('/analytics/group', {
       state: {
         preselectGroupIds: [currentSessionId]
       }

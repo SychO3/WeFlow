@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, useNavigate, useLocation } from 'react-router-dom'
 import TitleBar from './components/TitleBar'
 import Sidebar from './components/Sidebar'
 import RouteGuard from './components/RouteGuard'
@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage'
 import ChatPage from './pages/ChatPage'
 import AnalyticsPage from './pages/AnalyticsPage'
 import AnalyticsWelcomePage from './pages/AnalyticsWelcomePage'
+import ChatAnalyticsHubPage from './pages/ChatAnalyticsHubPage'
 import AnnualReportPage from './pages/AnnualReportPage'
 import AnnualReportWindow from './pages/AnnualReportWindow'
 import DualReportPage from './pages/DualReportPage'
@@ -36,6 +37,12 @@ import LockScreen from './components/LockScreen'
 import { GlobalSessionMonitor } from './components/GlobalSessionMonitor'
 import { BatchTranscribeGlobal } from './components/BatchTranscribeGlobal'
 import { BatchImageDecryptGlobal } from './components/BatchImageDecryptGlobal'
+
+function RouteStateRedirect({ to }: { to: string }) {
+  const location = useLocation()
+
+  return <Navigate to={to} replace state={location.state} />
+}
 
 function App() {
   const navigate = useNavigate()
@@ -562,9 +569,12 @@ function App() {
               <Route path="/home" element={<HomePage />} />
               <Route path="/chat" element={<ChatPage />} />
 
-              <Route path="/analytics" element={<AnalyticsWelcomePage />} />
-              <Route path="/analytics/view" element={<AnalyticsPage />} />
-              <Route path="/group-analytics" element={<GroupAnalyticsPage />} />
+              <Route path="/analytics" element={<ChatAnalyticsHubPage />} />
+              <Route path="/analytics/private" element={<AnalyticsWelcomePage />} />
+              <Route path="/analytics/private/view" element={<AnalyticsPage />} />
+              <Route path="/analytics/group" element={<GroupAnalyticsPage />} />
+              <Route path="/analytics/view" element={<RouteStateRedirect to="/analytics/private/view" />} />
+              <Route path="/group-analytics" element={<RouteStateRedirect to="/analytics/group" />} />
               <Route path="/annual-report" element={<AnnualReportPage />} />
               <Route path="/annual-report/view" element={<AnnualReportWindow />} />
               <Route path="/dual-report" element={<DualReportPage />} />

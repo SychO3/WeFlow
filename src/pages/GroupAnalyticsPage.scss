@@ -463,6 +463,10 @@
   background: var(--bg-secondary);
   border-radius: 16px;
   overflow: hidden;
+
+  .chat-analysis-header {
+    margin: 16px 16px 0;
+  }
 }
 
 .resize-handle {

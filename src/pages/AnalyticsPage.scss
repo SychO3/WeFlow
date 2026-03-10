@@ -1,3 +1,19 @@
+.analytics-page-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 100%;
+
+  .loading-container,
+  .error-container {
+    flex: 1;
+  }
+
+  .page-header {
+    margin-bottom: 16px;
+  }
+}
+
 // 加载和错误状态
 .loading-container,
 .error-container {

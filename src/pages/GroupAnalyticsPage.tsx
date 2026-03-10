@@ -4,6 +4,7 @@ import { Users, BarChart3, Clock, Image, Loader2, RefreshCw, Medal, Search, X, C
 import { Avatar } from '../components/Avatar'
 import ReactECharts from 'echarts-for-react'
 import DateRangePicker from '../components/DateRangePicker'
+import ChatAnalysisHeader from '../components/ChatAnalysisHeader'
 import * as configService from '../services/config'
 import {
   finishBackgroundTask,
@@ -1189,6 +1190,7 @@ function GroupAnalyticsPage() {
       {renderGroupList()}
       <div className="resize-handle" onMouseDown={() => setIsResizing(true)} />
       <div className="detail-area">
+        <ChatAnalysisHeader currentMode="group" />
         {renderDetailPanel()}
       </div>
       {renderMemberModal()}

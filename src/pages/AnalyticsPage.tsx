@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, type ReactNode } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Users, Clock, MessageSquare, Send, Inbox, Calendar, Loader2, RefreshCw, Medal, UserMinus, Search, X } from 'lucide-react'
 import ReactECharts from 'echarts-for-react'
@@ -12,6 +12,7 @@ import {
 } from '../services/backgroundTaskMonitor'
 import './AnalyticsPage.scss'
 import { Avatar } from '../components/Avatar'
+import ChatAnalysisHeader from '../components/ChatAnalysisHeader'
 
 interface ExcludeCandidate {
   username: string
@@ -416,8 +417,15 @@ function AnalyticsPage() {
     }
   }
 
+  const renderPageShell = (content: ReactNode) => (
+    <div className="analytics-page-shell">
+      <ChatAnalysisHeader currentMode="private" />
+      {content}
+    </div>
+  )
+
   if (isLoading && !isLoaded) {
-    return (
+    return renderPageShell(
       <div className="loading-container">
         <Loader2 size={48} className="spin" />
         <p className="loading-status">{loadingStatus}</p>
@@ -430,7 +438,7 @@ function AnalyticsPage() {
   }
 
   if (error && !isLoaded && isNoSessionError && excludedUsernames.size > 0) {
-    return (
+    return renderPageShell(
       <div className="error-container">
         <p>{error}</p>
         <div className="error-actions">
@@ -446,11 +454,16 @@ function AnalyticsPage() {
   }
 
   if (error && !isLoaded) {
-    return (<div className="error-container"><p>{error}</p><button className="btn btn-primary" onClick={() => loadData(true)}>重试</button></div>)
+    return renderPageShell(
+      <div className="error-container">
+        <p>{error}</p>
+        <button className="btn btn-primary" onClick={() => loadData(true)}>重试</button>
+      </div>
+    )
   }
 
 
-  return (
+  return renderPageShell(
     <>
       <div className="page-header">
         <h1>私聊分析</h1>

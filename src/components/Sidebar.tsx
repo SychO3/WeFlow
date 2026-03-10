@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
-import { Home, MessageSquare, BarChart3, Users, FileText, Settings, ChevronLeft, ChevronRight, Download, Aperture, UserCircle, Lock, LockOpen, ChevronUp, Trash2 } from 'lucide-react'
+import { Home, MessageSquare, BarChart3, FileText, Settings, ChevronLeft, ChevronRight, Download, Aperture, UserCircle, Lock, LockOpen, ChevronUp, Trash2 } from 'lucide-react'
 import { useAppStore } from '../stores/appStore'
 import * as configService from '../services/config'
 import { onExportSessionStatus, requestExportSessionStatus } from '../services/exportBridge'
@@ -375,24 +375,14 @@ function Sidebar() {
           <span className="nav-label">通讯录</span>
         </NavLink>
 
-        {/* 私聊分析 */}
+        {/* 聊天分析 */}
         <NavLink
           to="/analytics"
           className={`nav-item ${isActive('/analytics') ? 'active' : ''}`}
-          title={collapsed ? '私聊分析' : undefined}
+          title={collapsed ? '聊天分析' : undefined}
         >
           <span className="nav-icon"><BarChart3 size={20} /></span>
-          <span className="nav-label">私聊分析</span>
-        </NavLink>
-
-        {/* 群聊分析 */}
-        <NavLink
-          to="/group-analytics"
-          className={`nav-item ${isActive('/group-analytics') ? 'active' : ''}`}
-          title={collapsed ? '群聊分析' : undefined}
-        >
-          <span className="nav-icon"><Users size={20} /></span>
-          <span className="nav-label">群聊分析</span>
+          <span className="nav-label">聊天分析</span>
         </NavLink>
 
         {/* 年度报告 */}
